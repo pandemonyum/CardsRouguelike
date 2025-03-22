@@ -1,0 +1,5 @@
+/Library
+/UserSettings
+*.csproj
+/.vscode
+/Logs
