@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Nemico
-  maxHealth: 45
+  maxHealth: 20
   currentHealth: 20
   baseDamage: 8
   baseBlock: 5
@@ -2969,7 +2969,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120415413}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: 9e774ebc77fdbf7428d682501230d343, type: 2}
   m_Animations: []
@@ -2986,9 +2986,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120415413}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1abce78b30e76ae408e6841935df0e75, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9bbc8a8176849424d804c9ed1402f23c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3217,14 +3217,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6893777820812258005, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6893777820812258005, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9bbc8a8176849424d804c9ed1402f23c, type: 2}
     - target: {fileID: 7975574700056579715, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 329
@@ -3265,22 +3257,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
-      propertyPath: m_Animations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
-      propertyPath: 'm_Animations.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7400000, guid: c4b3b5b425dbc2b4c98f18c1111222d2, type: 2}
-    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
-      propertyPath: 'm_Animations.Array.data[1]'
-      value: 
-      objectReference: {fileID: 7400000, guid: 25ee5a736435f5744904f41dfded2f7f, type: 2}
     - target: {fileID: 9108239125839632096, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
       propertyPath: m_Name
       value: skeleton
