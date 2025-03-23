@@ -1426,7 +1426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36, y: -84}
+  m_AnchoredPosition: {x: -59.713676, y: 40.999992}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950861570
@@ -2641,7 +2641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.713705, y: 0}
+  m_AnchoredPosition: {x: -77, y: 125}
   m_SizeDelta: {x: 51.4274, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914607229
@@ -3217,6 +3217,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6893777820812258005, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893777820812258005, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9bbc8a8176849424d804c9ed1402f23c, type: 2}
     - target: {fileID: 7975574700056579715, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 329
@@ -3257,6 +3265,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: 'm_Animations.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7400000, guid: c4b3b5b425dbc2b4c98f18c1111222d2, type: 2}
+    - target: {fileID: 8574702286387481994, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: 'm_Animations.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7400000, guid: 25ee5a736435f5744904f41dfded2f7f, type: 2}
     - target: {fileID: 9108239125839632096, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
       propertyPath: m_Name
       value: skeleton
