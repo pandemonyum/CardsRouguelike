@@ -1596,6 +1596,8 @@ MonoBehaviour:
   handTransform: {fileID: 998524708}
   cardsInHand: []
   maxHandSize: 10
+  cardSpreadDistance: 81.5
+  hoverAnimationSpeed: 0.2
 --- !u!224 &998524708
 RectTransform:
   m_ObjectHideFlags: 0
