@@ -19,14 +19,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     
     [Header("Card Behavior")]
     private Vector3 startPosition;
-    private Transform originalParent;
+    public Transform originalParent;
     private bool isDragging = false;
     
     [Header("Hover Effect")]
     public float hoverScaleFactor = 1.2f;
     public float hoverYOffset = 30f;
     public float hoverAnimationSpeed = 0.2f;
-    private Vector3 originalScale;
+    public Vector3 originalScale;
     private bool isHovering = false;
     
     [Header("Playable Zone")]
@@ -46,6 +46,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     [Header("Fan-Out Effect")]
     public float fanOutDistance = 40f;  // Distanza di spostamento laterale
     public bool isHoveredCard = false;  // Flag per la carta con hover
+
+    [Header("Targeting")]
+    public float targetingThreshold = 50f; // La distanza verso l'alto per attivare il targeting
+    private Vector2 dragStartPosition;
+    private bool isTargeting = false;
 
     void Start()
     {
@@ -207,6 +212,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         isDragging = true;
         startPosition = transform.position;
         originalParent = transform.parent;
+        dragStartPosition = eventData.position;
         
         // Sposta la carta in primo piano mentre viene trascinata
         transform.SetParent(transform.root);
@@ -217,9 +223,35 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         transform.localScale = originalScale * 1.05f; // Leggermente più grande per visibilità
     }
     
-    public void OnDrag(PointerEventData eventData)
+   public void OnDrag(PointerEventData eventData)
     {
-        if (isDragging)
+        if (!isDragging) return;
+        
+        // Se la carta richiede un bersaglio e il trascinamento è verso l'alto
+        if (requiresTarget && !isTargeting)
+        {
+            // Calcola la distanza verticale del trascinamento
+            float verticalDrag = dragStartPosition.y - eventData.position.y;
+            
+            // Se il trascinamento verso l'alto supera la soglia, attiva il targeting
+            if (verticalDrag < -targetingThreshold)
+            {
+                isTargeting = true;
+                
+                // Attiva il sistema di targeting
+                TargetingSystem targetingSystem = FindFirstObjectByType<TargetingSystem>();
+                if (targetingSystem != null)
+                {
+                    // Posiziona la carta nella parte inferiore dello schermo
+                    transform.position = new Vector3(Screen.width / 2, 100, 0);
+                    targetingSystem.StartTargeting(this, eventData);
+                    return;
+                }
+            }
+        }
+        
+        // Se non stiamo ancora in modalità targeting, segui normalmente il mouse
+        if (!isTargeting)
         {
             transform.position = eventData.position;
         }
@@ -230,7 +262,56 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         isDragging = false;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         
-        // Verifica se la carta è stata rilasciata sulla zona di gioco
+        // Se eravamo in modalità targeting, verifica se il mouse è sopra un nemico
+        if (isTargeting)
+        {
+            isTargeting = false;
+            
+            TargetingSystem targetingSystem = FindFirstObjectByType<TargetingSystem>();
+            if (targetingSystem != null && targetingSystem.isTargeting)
+            {
+               // Verifica se il mouse è sopra un nemico
+                bool isOverEnemy = false;
+                int enemyIndex = -1;
+
+                foreach (Enemy enemy in targetingSystem.availableTargets)
+                {
+                    // Ottieni la posizione dello schermo del nemico
+                    Vector3 enemyScreenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
+                    
+                    // Calcola la distanza dal mouse
+                    float hitDistance = Vector2.Distance(new Vector2(eventData.position.x, eventData.position.y), 
+                                                        new Vector2(enemyScreenPos.x, enemyScreenPos.y));
+                    
+                    // Debug per vedere la distanza
+                    Debug.Log($"Distanza da {enemy.enemyName}: {hitDistance}");
+                    
+                    // Usa un raggio di rilevamento più grande (150-200 pixel è un buon valore)
+                    if (hitDistance < Properies.TarghetHitDistance)
+                    {
+                        isOverEnemy = true;
+                        enemyIndex = targetingSystem.availableTargets.IndexOf(enemy);
+                        Debug.Log($"Mouse sopra nemico: {enemy.enemyName}");
+                        break;
+                    }
+                }
+                
+                if (isOverEnemy)
+                {
+                    // Se il mouse è sopra un nemico, imposta l'indice e conferma
+                    targetingSystem.SetTargetIndex(enemyIndex);
+                    targetingSystem.ConfirmTarget();
+                }
+                else
+                {
+                    // Se non è sopra un nemico, annulla il targeting
+                    targetingSystem.CancelTargeting();
+                }
+                return;
+            }
+        }
+        
+        // Altrimenti usa la logica regolare di rilascio
         if (playZone != null && playZone.IsCardOverPlayZone(this))
         {
             PlayCard();
@@ -278,42 +359,44 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             combatManager = FindFirstObjectByType<CombatManager>();
         }
         
-        // Se la carta richiede un bersaglio, attiva il sistema di targeting
-        if (requiresTarget && combatManager != null && combatManager.currentEnergy >= cardData.energyCost)
-    {
-                // Attiva il sistema di targeting
-                TargetingSystem targetingSystem = FindFirstObjectByType<TargetingSystem>();
-                if (targetingSystem != null)
-                {
-                    targetingSystem.StartTargeting(this);
-                    return; // Non completare il gioco della carta ora
-                }
-            
-        }
-        
-        // Per carte che non richiedono bersaglio, o se il targeting fallisce
-        // continua con la logica normale
-        if (combatManager != null && combatManager.TryPlayCard(cardData, cardData.energyCost))
+        // Per carte che non richiedono bersaglio
+        if (!requiresTarget)
         {
-            // Applica l'effetto della carta
-            ApplyCardEffect();
-            
-            // Rimuovi la carta dalla mano
-            Hand hand = originalParent.GetComponent<Hand>();
-            if (hand != null)
+            // Verifica se abbiamo abbastanza energia
+            if (combatManager != null && combatManager.TryPlayCard(cardData, cardData.energyCost))
             {
-                hand.RemoveCard(this);
+                // Applica l'effetto della carta senza bersaglio
+                ApplyCardEffect();
+                
+                // Rimuovi la carta dalla mano
+                Hand hand = originalParent.GetComponent<Hand>();
+                if (hand != null)
+                {
+                    hand.RemoveCard(this);
+                }
+                
+                // Distruggi la carta
+                Destroy(gameObject);
             }
-            
-            // Distruggi la carta
-            Destroy(gameObject);
+            else
+            {
+                // Non abbastanza energia, torna nella mano
+                transform.SetParent(originalParent);
+                transform.position = startPosition;
+                transform.localScale = originalScale;
+            }
         }
         else
         {
-            // Non abbastanza energia, torna nella mano
+            // Per carte che richiedono bersaglio, non facciamo nulla qui
+            // perché il targeting è gestito da OnDrag e dal TargetingSystem
+            // Riportiamo la carta nella mano
             transform.SetParent(originalParent);
             transform.position = startPosition;
             transform.localScale = originalScale;
+            
+            // Opzionale: mostra un messaggio all'utente
+            Debug.Log("Questa carta richiede un bersaglio. Trascina verso l'alto per mirare.");
         }
     }
     // Metodo per applicare l'effetto della carta
