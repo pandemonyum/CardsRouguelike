@@ -40,8 +40,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156.34772, y: 179.11804}
-  m_SizeDelta: {x: 412.6954, y: 458.236}
+  m_AnchoredPosition: {x: -80.42627, y: 127.90686}
+  m_SizeDelta: {x: 260.8524, y: 355.8135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6904808945990120774
 CanvasRenderer:
@@ -111,10 +111,16 @@ MonoBehaviour:
   descriptionText: {fileID: 3415084721481303773}
   costText: {fileID: 1930327727237781249}
   cardFrame: {fileID: 4689810804463046881}
+  originalParent: {fileID: 0}
   hoverScaleFactor: 1.2
   hoverYOffset: 30
   hoverAnimationSpeed: 0.2
+  originalScale: {x: 0, y: 0, z: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
   requiresTarget: 0
+  fanOutDistance: 40
+  isHoveredCard: 0
+  targetingThreshold: 50
 --- !u!1 &7454600258013814764
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -164.5782, y: 196.9625}
+  m_AnchoredPosition: {x: -0.063004, y: 180.94}
   m_SizeDelta: {x: 38.0477, y: 32.2423}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8425089070558986513
@@ -517,7 +523,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 51.796997, y: 0, z: 48.418945, w: 6.3807983}
+  m_margin: {x: 51.796997, y: 0, z: 70.622314, w: 47.92273}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -557,8 +563,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.755, y: 129.0713}
-  m_SizeDelta: {x: 314.62, y: 186.0874}
+  m_AnchoredPosition: {x: -0.063, y: 101.1378}
+  m_SizeDelta: {x: 235.1172, y: 127.3557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9087991379249869238
 CanvasRenderer:
