@@ -69,7 +69,24 @@ public class MapManager : MonoBehaviour
         }
         
         // Calculate centering offset
+        RectTransform containerRect = mapContainer as RectTransform;
+    
+        // Calcola offset per centrare orizzontalmente
         float centerXOffset = (mapWidth - 1) * horizontalSpacing * 0.5f;
+        
+        // Calcola l'altezza disponibile per la mappa
+        float availableHeight = containerRect.rect.height - 40f; // 20px di margine sopra e sotto
+        
+        // Adatta la spaziatura verticale se necessario
+        float calculatedVerticalSpacing = availableHeight / (mapHeight - 1);
+        if (calculatedVerticalSpacing < 100f) // Spaziatura minima
+        {
+            calculatedVerticalSpacing = 100f;
+        }
+        else if (calculatedVerticalSpacing > verticalSpacing)
+        {
+            calculatedVerticalSpacing = verticalSpacing; // Usa la spaziatura predefinita se c'è abbastanza spazio
+        }
         
         // Create a 2D array to store nodes
         MapNode[,] nodeGrid = new MapNode[mapWidth, mapHeight];
@@ -121,14 +138,14 @@ public class MapManager : MonoBehaviour
                 
                 // Position the node with variation
                 float xPos = x * horizontalSpacing - centerXOffset;
-                float yPos = y * verticalSpacing;
+                float yPos = y * calculatedVerticalSpacing ;
                 rectTransform.anchoredPosition = new Vector2(xPos, yPos);
                 
                 // Add a small random offset for a more natural look
                 if (y != 0 && y != mapHeight - 1)
                 {
                     float xOffset = Random.Range(-horizontalSpacing * 0.15f, horizontalSpacing * 0.15f);
-                    float yOffset = Random.Range(-verticalSpacing * 0.1f, verticalSpacing * 0.1f);
+                    float yOffset = Random.Range(-calculatedVerticalSpacing  * 0.1f, calculatedVerticalSpacing  * 0.1f);
                     rectTransform.anchoredPosition += new Vector2(xOffset, yOffset);
                 }
                 
