@@ -463,7 +463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1744151977, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
+  m_Sprite: {fileID: 2022066493, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3269,7 +3269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2081245629, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
+  m_Sprite: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3344,7 +3344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1756047590, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
+  m_Sprite: {fileID: 249350219, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3929,6 +3929,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4953243698049322764, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2022066493, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
     - target: {fileID: 7975574700056579715, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 150
@@ -3969,6 +3973,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8719246024663485543, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: debuffChance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719246024663485543, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: buffIntentionIcon
+      value: 
+      objectReference: {fileID: 833843381, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
+    - target: {fileID: 8719246024663485543, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: attackIntentionIcon
+      value: 
+      objectReference: {fileID: 2022066493, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+    - target: {fileID: 8719246024663485543, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: debuffIntentionIcon
+      value: 
+      objectReference: {fileID: 447409311, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+    - target: {fileID: 8719246024663485543, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
+      propertyPath: defendIntentionIcon
+      value: 
+      objectReference: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
     - target: {fileID: 9108239125839632096, guid: a6a438e8a7f5b0444bea45830abdf3b4, type: 3}
       propertyPath: m_Name
       value: skeleton
