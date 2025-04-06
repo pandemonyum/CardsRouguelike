@@ -1,0 +1,57 @@
+{
+    "map_id": "dungeon_map_001",
+    "current_level": 0,
+    "rows": 4,
+    "columns": 5,
+    "nodes": [
+      {
+        "id": "0-2",
+        "type": "normal",
+        "position": {"row": 0, "column": 2},
+        "connections": ["1-1", "1-2"],
+        "state": "completed"
+      },
+      {
+        "id": "1-1",
+        "type": "shop",
+        "position": {"row": 1, "column": 1},
+        "connections": ["2-0", "2-1"],
+        "state": "selectable"
+      },
+      {
+        "id": "1-2",
+        "type": "elite",
+        "position": {"row": 1, "column": 3},
+        "connections": ["2-1", "2-2"],
+        "state": "selectable"
+      },
+      {
+        "id": "2-0",
+        "type": "rest",
+        "position": {"row": 2, "column": 0},
+        "connections": ["3-2"],
+        "state": "locked"
+      },
+      {
+        "id": "2-1",
+        "type": "normal",
+        "position": {"row": 2, "column": 2},
+        "connections": ["3-2"],
+        "state": "locked"
+      },
+      {
+        "id": "2-2",
+        "type": "mystery",
+        "position": {"row": 2, "column": 4},
+        "connections": ["3-2"],
+        "state": "locked"
+      },
+      {
+        "id": "3-2",
+        "type": "boss",
+        "position": {"row": 3, "column": 2},
+        "connections": [],
+        "state": "locked"
+      }
+    ]
+  }

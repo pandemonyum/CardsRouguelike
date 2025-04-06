@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class MapNode : MonoBehaviour
 {
     [Header("Node Settings")]
-    public int nodeId;
+    public string nodeId;
     public NodeType nodeType;
     public bool isRevealed = true;
     public bool isSelectable;
@@ -56,7 +56,7 @@ public class MapNode : MonoBehaviour
         UpdateVisuals();
     }
 
-    public void SetupNode(NodeType type, int id)
+    public void SetupNode(NodeType type, string id)
     {
         nodeType = type;
         nodeId = id;
