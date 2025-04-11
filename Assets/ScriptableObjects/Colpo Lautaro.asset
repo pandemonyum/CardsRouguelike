@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Colpo
   description: Infligge 6 danni
   energyCost: 1
-  artwork: {fileID: -4707216678367517785, guid: 352a5ff1d2dc3da4183e835562b785e9, type: 3}
+  artwork: {fileID: 2943016825208262457, guid: a4a53387fe07dcd40ae0837e9dbd1246, type: 3}
   cardType: 0
   rarity: 0
   damage: 6
