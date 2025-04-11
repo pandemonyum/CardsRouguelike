@@ -24,19 +24,22 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     
     [Header("Hover Effect")]
     public float hoverScaleFactor = 1.2f;
-    public float hoverYOffset = 30f;
+    public float hoverYOffset = 140f;
     public float hoverAnimationSpeed = 0.2f;
     public Vector3 originalScale;
     private bool isHovering = false;
-    
+
+    [Header("Selected Effect")]
+    public float selectedYOffset = 140f;
+
     [Header("Playable Zone")]
     private PlayZone playZone;
     private CombatManager combatManager;
     
     // Colori per i diversi tipi di carte
-    private Color attackColor = new Color(0.8f, 0.2f, 0.2f);
-    private Color skillColor = new Color(0.2f, 0.5f, 0.8f);
-    private Color powerColor = new Color(0.6f, 0.2f, 0.8f);
+    //private Color attackColor = new Color(0.8f, 0.2f, 0.2f);
+   // private Color skillColor = new Color(0.2f, 0.5f, 0.8f);
+   // private Color powerColor = new Color(0.6f, 0.2f, 0.8f);
 
     public Vector3 originalPosition;
 
@@ -98,20 +101,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         if (cardData.artwork != null)
         {
             artworkImage.sprite = cardData.artwork;
-        }
-        
-        // Imposta il colore in base al tipo di carta
-        switch (cardData.cardType)
-        {
-            case CardData.CardType.Attack:
-                cardFrame.color = attackColor;
-                break;
-            case CardData.CardType.Skill:
-                cardFrame.color = skillColor;
-                break;
-            case CardData.CardType.Power:
-                cardFrame.color = powerColor;
-                break;
         }
     }
     
@@ -243,7 +232,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
                 if (targetingSystem != null)
                 {
                     // Posiziona la carta nella parte inferiore dello schermo
-                    transform.position = new Vector3(Screen.width / 2, 100, 0);
+                    transform.position = new Vector3(Screen.width / 2, selectedYOffset, 0);
                     targetingSystem.StartTargeting(this, eventData);
                     return;
                 }

@@ -115,7 +115,7 @@ MonoBehaviour:
   cardFrame: {fileID: 4689810804463046881}
   originalParent: {fileID: 0}
   hoverScaleFactor: 1.2
-  hoverYOffset: 30
+  hoverYOffset: 140
   hoverAnimationSpeed: 0.2
   originalScale: {x: 0, y: 0, z: 0}
   originalPosition: {x: 0, y: 0, z: 0}
